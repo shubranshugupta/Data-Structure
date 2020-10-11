@@ -19,7 +19,7 @@ private:
             }
             return head_ptr;
         }
-        if(op == 'd'){
+        if(op == 'p'){
             while(head_ptr != NULL){
                 cout<<head_ptr->data<<" ";
                 head_ptr = head_ptr->next;
@@ -29,11 +29,13 @@ private:
     }
 
 public:
+    int len=0;
     LinkedList(){
         head = NULL;
     }
 
     void add_node(int val){
+        len++;
         Node *new_node = new Node();
         new_node->data = val;
         new_node->next = NULL;
@@ -45,17 +47,20 @@ public:
         }
     }
 
+
     void display(){
         if(head == NULL){
             cout<<"Link List is Empty."<<endl;
         }else{
-            traverse(head, 'd');
+            traverse(head, 'p');
         }
     }
+
 
     void reverse_lst(){
         if(head == NULL){
             cout<<"Link List is Empty."<<endl;
+            return;
         }else{
             Node *temp_head = head;
             Node* nextnode = NULL;
@@ -71,11 +76,44 @@ public:
         }
     }
 
-    void delete_node(int var, char by){
-        if(by == 'p'){
-            for(int i=0; i<var; i++){
 
+    void delete_node(int var, char by){
+        if(head == NULL){
+            cout<<"Link List is Empty."<<endl;
+            return;
+        }
+        if(by == 'p'){
+            Node *prevnode = NULL, *tempnode = head;
+            if(var == 0){
+                if(head->next == NULL){
+                    delete head;
+                    head = NULL;
+                    len--;
+                    return;
+                }else{
+                    head = tempnode->next;
+                    delete tempnode;
+                    len--;
+                    return;
+                }
             }
+            if(var > 0 && var < len){
+                int i = 0;
+                while(i<var){
+                    prevnode = tempnode;
+                    tempnode = tempnode->next;
+                    i++;
+                }
+                prevnode->next = tempnode->next;
+                delete tempnode;
+                len--;
+                return;
+            }else{
+                cout<<"Out of range"<<endl;
+            }
+        }
+        if(by == 'd'){
+            return;
         }
     }
 };
@@ -85,10 +123,20 @@ int main()
     LinkedList* list1 = new LinkedList();
     list1->add_node(8);
     list1->add_node(4);
-    list1->add_node(2);
+    //list1->add_node(2);
     list1->display();
     cout<<endl;
-    list1->reverse_lst();
+    cout<<list1->len<<endl;
+    //list1->reverse_lst();
+    //list1->display();
+    //cout<<endl;
+    list1->delete_node(0, 'p');
     list1->display();
+    cout<<endl;
+    list1->add_node(2);
+    cout<<endl;
+    list1->display();
+    cout<<endl;
+    cout<<list1->len<<endl;
     return 0;
 }
