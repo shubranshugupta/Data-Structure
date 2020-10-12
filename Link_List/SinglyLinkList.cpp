@@ -113,7 +113,10 @@ public:
             }
         }
         if(by == 'd'){
-            return;
+            Node *temp = head;
+            for(int i = 0; i<len; i++){
+                if(temp->data == val){
+                    
         }
     }
 };
