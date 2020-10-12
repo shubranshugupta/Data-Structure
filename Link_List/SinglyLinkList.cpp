@@ -113,10 +113,26 @@ public:
             }
         }
         if(by == 'd'){
-            Node *temp = head;
+            Node *temp = head, *prevnode = NULL;
             for(int i = 0; i<len; i++){
-                if(temp->data == val){
-                    
+                if(temp->data == var && prevnode == NULL){
+                    head = temp->next;
+                    delete temp;
+                    len--;
+                    break;
+                }
+                if(temp->data == var){
+                    prevnode->next = temp->next;
+                    delete temp;
+                    len--;
+                    break;
+                }
+                prevnode = temp;
+                temp = temp->next;
+            }
+            if(temp == NULL){
+                cout<<"Value Not Present"<<endl;
+            }
         }
     }
 };
@@ -124,22 +140,22 @@ public:
 int main()
 {
     LinkedList* list1 = new LinkedList();
-    list1->add_node(8);
-    list1->add_node(4);
-    //list1->add_node(2);
-    list1->display();
-    cout<<endl;
-    cout<<list1->len<<endl;
-    //list1->reverse_lst();
-    //list1->display();
-    //cout<<endl;
-    list1->delete_node(0, 'p');
-    list1->display();
-    cout<<endl;
-    list1->add_node(2);
-    cout<<endl;
-    list1->display();
-    cout<<endl;
-    cout<<list1->len<<endl;
+    // list1->add_node(8);
+    // list1->add_node(4);
+    // list1->add_node(2);
+    // list1->display();
+    // cout<<endl;
+    // cout<<list1->len<<endl;
+    // list1->reverse_lst();
+    // list1->display();
+    // cout<<endl;
+    // list1->delete_node(4, 'd');
+    // list1->display();
+    // cout<<endl;
+    // list1->add_node(2);
+    // cout<<endl;
+    // list1->display();
+    // cout<<endl;
+    // cout<<list1->len<<endl;
     return 0;
 }
