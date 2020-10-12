@@ -19,6 +19,7 @@ private:
             }
             return head_ptr;
         }
+
         if(op == 'p'){
             while(head_ptr != NULL){
                 cout<<head_ptr->data<<" ";
@@ -77,11 +78,12 @@ public:
     }
 
 
-    void delete_node(int var, char by){
+    void delete_node(int var, char by='p'){
         if(head == NULL){
             cout<<"Link List is Empty."<<endl;
             return;
         }
+
         if(by == 'p'){
             Node *prevnode = NULL, *tempnode = head;
             if(var == 0){
@@ -97,6 +99,7 @@ public:
                     return;
                 }
             }
+
             if(var > 0 && var < len){
                 int i = 0;
                 while(i<var){
@@ -112,6 +115,7 @@ public:
                 cout<<"Out of range"<<endl;
             }
         }
+
         if(by == 'd'){
             Node *temp = head, *prevnode = NULL;
             for(int i = 0; i<len; i++){
@@ -121,6 +125,7 @@ public:
                     len--;
                     break;
                 }
+
                 if(temp->data == var){
                     prevnode->next = temp->next;
                     delete temp;
@@ -130,27 +135,82 @@ public:
                 prevnode = temp;
                 temp = temp->next;
             }
+
             if(temp == NULL){
                 cout<<"Value Not Present"<<endl;
             }
         }
+    }
+
+    int search(int var){
+        if(head == NULL){
+            cout<<"Link List is Empty."<<endl;
+            return -2;
+        }
+
+        Node *temp = head;
+        int pos = 0;
+        while(temp != NULL){
+            if(temp->data == var){
+                return pos;
+            }
+            pos++;
+            temp = temp->next;
+        }
+
+        if(pos == len){
+            return -1;
+        }
+    }
+
+    void change(int pos, int var, char by='p'){
+        if(head == NULL){
+            cout<<"Link List is Empty."<<endl;
+            return;
+        }
+
+        if(by == 'p'){
+            if(len<pos+1){
+                cout<<"Out of range"<<endl;
+                return;
+            }
+            Node *temp = head;
+            for(int i = 0; i<pos; i++){
+                temp = temp->next;
+            }
+            temp->data = var;
+        }
+
+        if(by == 'd'){
+            pos = search(pos);
+            if(pos == -1){
+                cout<<"Element not present"<<endl;
+                return;
+            }
+            change(pos, var);
+        }
+    }
+
+    void swap(int pos1, int pos2){
+        val1 = 
     }
 };
 
 int main()
 {
     LinkedList* list1 = new LinkedList();
-    // list1->add_node(8);
-    // list1->add_node(4);
+    list1->add_node(8);
+    list1->add_node(4);
     // list1->add_node(2);
-    // list1->display();
-    // cout<<endl;
+    list1->display();
+    cout<<endl;
     // cout<<list1->len<<endl;
     // list1->reverse_lst();
     // list1->display();
     // cout<<endl;
-    // list1->delete_node(4, 'd');
-    // list1->display();
+    list1->change(4, 7, 'd');
+    // cout<<endl;
+    list1->display();
     // cout<<endl;
     // list1->add_node(2);
     // cout<<endl;
