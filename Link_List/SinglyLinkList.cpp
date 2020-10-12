@@ -199,18 +199,18 @@ public:
 int main()
 {
     LinkedList* list1 = new LinkedList();
-    list1->add_node(8);
-    list1->add_node(4);
+    // list1->add_node(8);
+    // list1->add_node(4);
     // list1->add_node(2);
-    list1->display();
-    cout<<endl;
+    // list1->display();
+    // cout<<endl;
     // cout<<list1->len<<endl;
     // list1->reverse_lst();
     // list1->display();
     // cout<<endl;
-    list1->change(4, 7, 'd');
+    // list1->change(4, 7, 'd');
     // cout<<endl;
-    list1->display();
+    // list1->display();
     // cout<<endl;
     // list1->add_node(2);
     // cout<<endl;
