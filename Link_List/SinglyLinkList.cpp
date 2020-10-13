@@ -1,4 +1,6 @@
 #include <iostream>
+#include<tuple>
+#include<algorithm>
 
 using namespace std;
 
@@ -28,6 +30,32 @@ private:
             return NULL;
         }
     }
+
+    tuple <int, int> node_val(Node *head_ptr, int pos1, int pos2=-1){
+        int var1, var2;
+        if(pos2 != -1){
+            for(int i=0; i<=len; i++){
+                if(i == pos1){
+                    var1 = head_ptr->data;
+                }
+
+                if(i == pos2){
+                    var2 = head_ptr->data;
+                    return make_tuple(var1, var2);
+                }
+                head_ptr = head_ptr->next;
+            }
+        }else{
+            for(int i=0; i<=len; i++){
+                if(i == pos1){
+                    var1 = head_ptr->data;
+                    return make_tuple(var1, NULL);
+                }
+                head_ptr = head_ptr->next;
+            }
+        }
+    }
+
 
 public:
     int len=0;
@@ -192,7 +220,25 @@ public:
     }
 
     void swap(int pos1, int pos2){
-        val1 = 
+        if(pos1 > (len-1) || pos2 > (len-1)){
+            cout<<"Out of range"<<endl;
+            return;
+        }
+
+        int var1, var2;
+        if(pos1 < pos2){
+            tie(var1, var2) = node_val(head, pos1, pos2);
+            change(pos1, var2);
+            change(pos2, var1);
+        }else{
+            tie(var2, var1) = node_val(head, pos2, pos1);
+            change(pos1, var2);
+            change(pos2, var1);
+        }
+    }
+
+    void sort(){
+        
     }
 };
 
@@ -204,6 +250,8 @@ int main()
     // list1->add_node(2);
     // list1->display();
     // cout<<endl;
+    // list1->swap(2, 0);
+    // list1->display();
     // cout<<list1->len<<endl;
     // list1->reverse_lst();
     // list1->display();
