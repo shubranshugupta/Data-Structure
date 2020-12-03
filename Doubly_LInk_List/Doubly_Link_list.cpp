@@ -5,7 +5,8 @@ using namespace std;
 class Node{
 public:
     int data;
-    Node *next, *prev;
+    Node* next;
+    Node* prev;
 };
 
 class DoublyLinkedList{
@@ -106,6 +107,10 @@ public:
     int len=0;
     DoublyLinkedList(){
         head = NULL;
+    }
+
+    Node* head_node(){
+        return head;
     }
 
     void add_node(int val){
@@ -319,6 +324,9 @@ int main()
     DoublyLinkedList* list1 = new DoublyLinkedList();
     list1->add_node(8);
     list1->add_node(4);
+
+    Node *temp = list1->head_node();
+    cout<<temp->data<<endl;
     // list1->add_node(2);
     // list1->display();
     // cout<<endl;

@@ -315,10 +315,10 @@ public:
 int main()
 {
     LinkedList* list1 = new LinkedList();
-    // list1->add_node(8);
-    // list1->add_node(4);
-    // list1->add_node(2);
-    // list1->display();
+    list1->add_node(8);
+    list1->add_node(4);
+    list1->add_node(2);
+    list1->display();
     // cout<<endl;
     // list1->sort_ll();
     // list1->display();
